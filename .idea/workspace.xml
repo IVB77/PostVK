@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ffa28591-b2bc-4144-8b69-bc3e2065a518" name="Changes" comment="Add new branch">
+    <list default="true" id="ffa28591-b2bc-4144-8b69-bc3e2065a518" name="Changes" comment="Type of variable changed to nullable">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/WallServiceTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/WallServiceTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,10 +29,18 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="Nullable" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="recentNewPullRequestHead">
+      <RepoCoordinatesHolder>
+        <option name="owner" value="IVB77" />
+        <option name="repository" value="PostVK" />
+      </RepoCoordinatesHolder>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -62,8 +71,8 @@
   </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
-      <command value="gradle test" />
       <command value="gradle test jacocoTestReport" />
+      <command value="gradle test" />
     </option>
   </component>
   <component name="RunManager" selected="Gradle.PostVK [test]">
@@ -172,7 +181,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666694583082</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Type of variable changed to nullable">
+      <created>1666695691048</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1666695691048</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -189,6 +205,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Remove bugs" />
     <MESSAGE value="Add new branch" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add new branch" />
+    <MESSAGE value="Type of variable changed to nullable" />
+    <option name="LAST_COMMIT_MESSAGE" value="Type of variable changed to nullable" />
   </component>
 </project>
