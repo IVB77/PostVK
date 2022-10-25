@@ -13,18 +13,15 @@ data class Post(
     var id: Int = 0
 )
 
-interface Attachment {
-    val type: String
-}
+sealed class Attachment (val type: String)
 
 class VideoAttachment(
     private val id: Int,
     private val ownerId: Int,
     private val title: String,
     private val description: String,
-    private val duration: Int,
-    override val type: String = "Video"
-) : Attachment {
+    private val duration: Int
+) : Attachment ("Video") {
     override fun toString(): String {
 
         return "$type $id $ownerId $title $description $duration"
@@ -36,9 +33,8 @@ class AudioAttachment(
     private val ownerId: Int,
     private val artist: String,
     private val title: String,
-    private val duration: Int,
-    override val type: String = "Audio"
-) : Attachment {
+    private val duration: Int
+) : Attachment ("Audio"){
     override fun toString(): String {
 
         return "$type $id $ownerId $artist $title $duration"
@@ -51,9 +47,8 @@ class PhotoAttachment(
     private val ownerId: Int,
     private val userId: Int,
     private val text: String,
-    private val date: Int,
-    override val type: String = "Photo"
-) : Attachment {
+    private val date: Int
+) : Attachment ("Photo"){
     override fun toString(): String {
 
         return "$type $id $albumId $ownerId $userId $text $date"
@@ -65,9 +60,8 @@ class LinkAttachment(
     private val title: String,
     private val caption: String,
     private val description: String,
-    private val previewPage: String,
-    override val type: String = "Link"
-) : Attachment {
+    private val previewPage: String
+) : Attachment ("Link"){
     override fun toString(): String {
 
         return "$type $url $title $caption $description $previewPage"
@@ -80,9 +74,8 @@ class DocAttachment(
     private val title: String,
     private val size: Int,
     private val ext: String,
-    private val date: Int,
-    override val type: String = "Doc"
-) : Attachment {
+    private val date: Int
+) : Attachment ("Doc"){
     override fun toString(): String {
 
         return "$type $id $ownerId $title $size $ext $date"
