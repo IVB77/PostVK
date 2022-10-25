@@ -1,14 +1,14 @@
 data class Post(
     val ownerId: Int,
-    val fromId: Int = 0,
-    val createdBy: Int,
-    val date: Int,
-    val replyOwnerId: Int = 0,
+    val fromId: Int?,
+    val createdBy: Int?,
+    val date: Int?,
+    val replyOwnerId: Int?,
     val text: String,
-    val copyright: String,
+    val copyright: String?,
     val friendsOnly: Boolean,
     val views: Views,
-    val copyHistory: Array<Int>,
+    val copyHistory: Array<Int>?,
     var id: Int = 0
 ) {
 
@@ -63,10 +63,12 @@ fun main() {
     WallService.add(Post(2, 3, 4, 5, 6, "5" , "6", false, Views(20), arrayOf(110, 220)))
     WallService.add(Post(8, 9, 10, 7, 8, "11", "12", false, Views(10), arrayOf(115, 225, 338)))
     WallService.add(Post(18, 9, 10, 7, 8, "11", "12", false, Views(10), arrayOf(115, 225, 338)))
+    WallService.add(Post(11, null, null, null, null, "111", null, true, Views(13), null))
     print(WallService.toString())
     println()
     WallService.update(Post(2222, 3222, 4, 5, 6, "5", "6", false, Views(20), arrayOf(110, 220), 2))
     WallService.update(Post(2222, 3222, 4, 5, 6, "5", "6", false, Views(20), arrayOf(110, 220), 5))
+    WallService.update(Post(2222, 3222, 4, 5, 6, "5", "6", false, Views(20), arrayOf(110, 220), 4))
     print(WallService.toString())
 
 }
