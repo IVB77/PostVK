@@ -60,7 +60,7 @@ object WallService {
 }
 
 fun main() {
-    WallService.add(Post(2, 3, 4, 5, 6, "5", "6", false, Views(20), arrayOf(110, 220)))
+    WallService.add(Post(2, 3, 4, 5, 6, "5" , "6", false, Views(20), arrayOf(110, 220)))
     WallService.add(Post(8, 9, 10, 7, 8, "11", "12", false, Views(10), arrayOf(115, 225, 338)))
     WallService.add(Post(18, 9, 10, 7, 8, "11", "12", false, Views(10), arrayOf(115, 225, 338)))
     print(WallService.toString())
