@@ -1,3 +1,4 @@
+class PostNotFoundException(message: String) : RuntimeException(message)
 data class Post(
     val ownerId: Int,
     val fromId: Int?,
@@ -13,7 +14,7 @@ data class Post(
     var id: Int = 0
 )
 
-sealed class Attachment (val type: String)
+sealed class Attachment(val type: String)
 
 class VideoAttachment(
     private val id: Int,
@@ -21,7 +22,7 @@ class VideoAttachment(
     private val title: String,
     private val description: String,
     private val duration: Int
-) : Attachment ("Video") {
+) : Attachment("Video") {
     override fun toString(): String {
 
         return "$type $id $ownerId $title $description $duration"
@@ -34,7 +35,7 @@ class AudioAttachment(
     private val artist: String,
     private val title: String,
     private val duration: Int
-) : Attachment ("Audio"){
+) : Attachment("Audio") {
     override fun toString(): String {
 
         return "$type $id $ownerId $artist $title $duration"
@@ -48,7 +49,7 @@ class PhotoAttachment(
     private val userId: Int,
     private val text: String,
     private val date: Int
-) : Attachment ("Photo"){
+) : Attachment("Photo") {
     override fun toString(): String {
 
         return "$type $id $albumId $ownerId $userId $text $date"
@@ -61,7 +62,7 @@ class LinkAttachment(
     private val caption: String,
     private val description: String,
     private val previewPage: String
-) : Attachment ("Link"){
+) : Attachment("Link") {
     override fun toString(): String {
 
         return "$type $url $title $caption $description $previewPage"
@@ -75,7 +76,7 @@ class DocAttachment(
     private val size: Int,
     private val ext: String,
     private val date: Int
-) : Attachment ("Doc"){
+) : Attachment("Doc") {
     override fun toString(): String {
 
         return "$type $id $ownerId $title $size $ext $date"
@@ -88,9 +89,20 @@ class Views(private val count: Int) {
     }
 }
 
+data class Comment(
+    val id: Int,
+    val fromId: Int,
+    val date: Int,
+    val text: String,
+    val replyToUser: Int
+) {
+
+}
+
 object WallService {
     private var id: Int = 1
     private var posts = emptyArray<Post>()
+    private var comments = emptyArray<Comment>()
 
     fun add(post: Post): Post {
         posts += post
@@ -117,6 +129,16 @@ object WallService {
             }
         }
         return false
+    }
+
+    fun createComment(postId: Int, comment: Comment): Comment? {
+        for (post in posts) {
+            if (post.id == postId) {
+                comments += comment
+                return comments.last()
+            }
+        }
+        return null
     }
 
     override fun toString(): String {
@@ -159,5 +181,10 @@ fun main() {
     attachment += AudioAttachment(2, 2, "Coj", "Song2", 15)
     WallService.update(Post(2222, 3222, 4, 5, 6, "5", "6", false, Views(20), arrayOf(110, 220), attachment, 4))
     print(WallService.toString())
+    println()
+
+    var comment:Comment = WallService.createComment(1,Comment(1,2,3,"comment", 4))?:throw PostNotFoundException("POST NOT FOUND")
+    println(comment)
+    comment = WallService.createComment(6,Comment(1,2,3,"comment", 4))?:throw PostNotFoundException("POST NOT FOUND")
 
 }
