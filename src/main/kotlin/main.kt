@@ -183,8 +183,10 @@ fun main() {
     print(WallService.toString())
     println()
 
-    var comment:Comment = WallService.createComment(1,Comment(1,2,3,"comment", 4))?:throw PostNotFoundException("POST NOT FOUND")
+    var comment: Comment =
+        WallService.createComment(1, Comment(1, 2, 3, "comment", 4)) ?: throw PostNotFoundException("POST NOT FOUND")
     println(comment)
-    comment = WallService.createComment(6,Comment(1,2,3,"comment", 4))?:throw PostNotFoundException("POST NOT FOUND")
+    comment =
+        WallService.createComment(6, Comment(1, 2, 3, "comment", 4)) ?: throw PostNotFoundException("POST NOT FOUND")
 
 }

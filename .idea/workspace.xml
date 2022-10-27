@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ffa28591-b2bc-4144-8b69-bc3e2065a518" name="Changes" comment="Type of variable changed to nullable">
+    <list default="true" id="ffa28591-b2bc-4144-8b69-bc3e2065a518" name="Changes" comment="Add class Comment, and PostNotFound Exception">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/WallServiceTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/WallServiceTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +85,7 @@
       <command value="gradle test" />
     </option>
   </component>
-  <component name="RunManager" selected="Kotlin.MainKt">
+  <component name="RunManager" selected="Gradle.PostVK [test]">
     <configuration name="PostVK [test jacocoTestReport]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -197,7 +198,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666695691048</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Add class Comment, and PostNotFound Exception">
+      <created>1666887113873</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1666887113873</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -215,6 +223,7 @@
     <MESSAGE value="Remove bugs" />
     <MESSAGE value="Add new branch" />
     <MESSAGE value="Type of variable changed to nullable" />
-    <option name="LAST_COMMIT_MESSAGE" value="Type of variable changed to nullable" />
+    <MESSAGE value="Add class Comment, and PostNotFound Exception" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add class Comment, and PostNotFound Exception" />
   </component>
 </project>

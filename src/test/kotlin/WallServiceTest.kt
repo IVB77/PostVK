@@ -72,9 +72,26 @@ class WallServiceTest {
                 Views(20),
                 arrayOf(110, 220),
                 arrayOf(PhotoAttachment(1, 2, 7, 20, "Photo of forest", 120)),
-                2
+                0
             )
         )
         assertFalse(result)
+    }
+
+    @Test
+    fun createCommentsTrue() {
+        WallService.add(
+            Post(
+                8, 9, 10, 7, 8, "11", "12", false, Views(10), arrayOf(115, 225, 338),
+                arrayOf(PhotoAttachment(1, 2, 7, 20, "Photo of forest", 120))
+            )
+        )
+        val result = WallService.createComment(1, Comment(1, 2, 3, "comment", 4))
+        assert(result != null)
+    }
+
+    @Test(expected = PostNotFoundException::class)
+    fun createCommentsException() {
+        val result: Comment = WallService.createComment(6, Comment(1, 2, 3, "comment", 4)) ?: throw PostNotFoundException("")
     }
 }
