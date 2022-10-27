@@ -1,4 +1,7 @@
 class PostNotFoundException(message: String) : RuntimeException(message)
+
+class CommentNotFound(message: String) : RuntimeException(message)
+
 data class Post(
     val ownerId: Int,
     val fromId: Int?,
@@ -90,19 +93,24 @@ class Views(private val count: Int) {
 }
 
 data class Comment(
-    val id: Int,
     val fromId: Int,
     val date: Int,
     val text: String,
-    val replyToUser: Int
-) {
+    val replyToUser: Int,
+    var id: Int = 0
+)
 
-}
+data class Report(
+    val ownerId: Int,
+    val commentId: Int,
+    val reason: Int
+)
 
 object WallService {
     private var id: Int = 1
     private var posts = emptyArray<Post>()
     private var comments = emptyArray<Comment>()
+    private var reports = emptyArray<Report>()
 
     fun add(post: Post): Post {
         posts += post
@@ -135,11 +143,25 @@ object WallService {
         for (post in posts) {
             if (post.id == postId) {
                 comments += comment
+                comments.last().id = comments.size
                 return comments.last()
             }
         }
         return null
     }
+
+    fun createReportComment(report: Report): Report? {
+        for (comment in comments) {
+            if (comment.id == report.commentId) {
+                if (report.reason in 1..6 || report.reason == 8) {
+                    reports += report
+                    return reports.last()
+                }
+            }
+        }
+        return null
+    }
+
 
     override fun toString(): String {
         var str = ""
@@ -184,9 +206,16 @@ fun main() {
     println()
 
     var comment: Comment =
-        WallService.createComment(1, Comment(1, 2, 3, "comment", 4)) ?: throw PostNotFoundException("POST NOT FOUND")
+        WallService.createComment(1, Comment(2, 3, "comment", 4)) ?: throw PostNotFoundException("POST NOT FOUND")
     println(comment)
+    /* Раскомментировать для проверки второго задания
     comment =
         WallService.createComment(6, Comment(1, 2, 3, "comment", 4)) ?: throw PostNotFoundException("POST NOT FOUND")
+    */
+    println()
 
+    var report: Report = WallService.createReportComment(Report(5,1,5))?:throw CommentNotFound("Report is wrong")
+    println(report)
+    report = WallService.createReportComment(Report(5,1,7))?:throw CommentNotFound("Report is wrong") //Неверная причина
+    report = WallService.createReportComment(Report(5,4,4))?:throw CommentNotFound("Report is wrong") //Неверный id коммента
 }
