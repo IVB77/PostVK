@@ -87,13 +87,13 @@ class WallServiceTest {
             )
         )
         val result = WallService.createComment(1, Comment(2, 3, "comment", 4))
-        assert(result != null)
+        assert(result.id != 0)
     }
 
     @Test(expected = PostNotFoundException::class)
     fun createCommentsException() {
         val result: Comment =
-            WallService.createComment(6, Comment(2, 3, "comment", 4)) ?: throw PostNotFoundException("")
+            WallService.createComment(6, Comment(2, 3, "comment", 4))
     }
 
     @Test
@@ -105,12 +105,12 @@ class WallServiceTest {
             )
         )
         WallService.createComment(1, Comment(2, 3, "comment", 4))
-        var report: Report? = WallService.createReportComment(Report(5, 1, 5))
-        assert(report != null)
+        val report: Report = WallService.createReportComment(Report(5, 1, 5))
+        assert(report.ownerId == 5 && report.commentId == 1 && report.reason == 5)
     }
 
     @Test(expected = CommentNotFound::class)
-    fun createReportExceptionCommentId(){
+    fun createReportExceptionCommentId() {
         WallService.add(
             Post(
                 8, 9, 10, 7, 8, "11", "12", false, Views(10), arrayOf(115, 225, 338),
@@ -118,10 +118,11 @@ class WallServiceTest {
             )
         )
         WallService.createComment(1, Comment(2, 3, "comment", 4))
-        var report: Report = WallService.createReportComment(Report(5, 0, 5)) ?: throw CommentNotFound("")
+        var report: Report = WallService.createReportComment(Report(5, 0, 5))
     }
+
     @Test(expected = CommentNotFound::class)
-    fun createReportExceptionReason(){
+    fun createReportExceptionReason() {
         WallService.add(
             Post(
                 8, 9, 10, 7, 8, "11", "12", false, Views(10), arrayOf(115, 225, 338),
@@ -129,6 +130,6 @@ class WallServiceTest {
             )
         )
         WallService.createComment(1, Comment(2, 3, "comment", 4))
-        var report: Report = WallService.createReportComment(Report(5, 1, 7)) ?: throw CommentNotFound("")
+        var report: Report = WallService.createReportComment(Report(5, 1, 7))
     }
 }

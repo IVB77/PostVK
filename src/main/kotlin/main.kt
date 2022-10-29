@@ -139,27 +139,29 @@ object WallService {
         return false
     }
 
-    fun createComment(postId: Int, comment: Comment): Comment? {
+    fun createComment(postId: Int, comment: Comment): Comment {
+        var commentTrue: Comment? = null
         for (post in posts) {
             if (post.id == postId) {
                 comments += comment
                 comments.last().id = comments.size
-                return comments.last()
+                commentTrue = comments.last()
             }
         }
-        return null
+        return commentTrue ?: throw PostNotFoundException("Post not found")
     }
 
-    fun createReportComment(report: Report): Report? {
+    fun createReportComment(report: Report): Report {
+        var reportTrue: Report? = null
         for (comment in comments) {
             if (comment.id == report.commentId) {
                 if (report.reason in 1..6 || report.reason == 8) {
                     reports += report
-                    return reports.last()
+                    reportTrue = reports.last()
                 }
             }
         }
-        return null
+        return reportTrue ?: throw CommentNotFound("Report is wrong")
     }
 
 
@@ -206,16 +208,15 @@ fun main() {
     println()
 
     var comment: Comment =
-        WallService.createComment(1, Comment(2, 3, "comment", 4)) ?: throw PostNotFoundException("POST NOT FOUND")
+        WallService.createComment(1, Comment(2, 3, "comment", 4))
     println(comment)
     /* Раскомментировать для проверки второго задания
-    comment =
-        WallService.createComment(6, Comment(1, 2, 3, "comment", 4)) ?: throw PostNotFoundException("POST NOT FOUND")
-    */
+    comment = WallService.createComment(6, Comment( 2, 3, "comment", 4))
+*/
     println()
 
-    var report: Report = WallService.createReportComment(Report(5,1,5))?:throw CommentNotFound("Report is wrong")
+    var report: Report = WallService.createReportComment(Report(5, 1, 5))
     println(report)
-    report = WallService.createReportComment(Report(5,1,7))?:throw CommentNotFound("Report is wrong") //Неверная причина
-    report = WallService.createReportComment(Report(5,4,4))?:throw CommentNotFound("Report is wrong") //Неверный id коммента
+    report = WallService.createReportComment(Report(5, 1, 7))
+    report = WallService.createReportComment(Report(5, 4, 4))
 }
